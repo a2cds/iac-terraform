@@ -1,0 +1,24 @@
+---
+- hosts: all
+  tasks:
+    - name: Create conf.d
+      copy:
+        dest: "/etc/nginx/default.d/p13.conf"
+        content: |
+          location /p13 {
+            alias /usr/share/nginx/html/p13;
+          }
+    - name: Create a directory if it does not exist
+      file:
+        path: "/usr/share/nginx/html/p13"
+        state: directory
+        mode: '0755'
+    - name: Create page
+      copy:
+        dest: "/usr/share/nginx/html/p13/index.html"
+        content: |
+          <h4>hello p13</h4>
+    - name: reload nginx
+      service:
+        name: nginx
+        state: reloaded

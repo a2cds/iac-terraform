@@ -1,0 +1,5 @@
+[web]
+treinamentoazure-iac4allml.iac4all.ml ansible_user=treinamento ansible_become=yes
+
+[web:vars]
+ansible_python_interpreter=/usr/bin/python2.7
